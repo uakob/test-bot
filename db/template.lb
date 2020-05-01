@@ -1,0 +1,13 @@
+classpath=lib/sqljdbc.jar
+driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+url=jdbc:sqlserver://SERVER_HOSTNAME:1433;databaseName=YOU_DATABASE_NAME
+username=USERNAME
+password=PASSWORD
+changeLogFile=changeLog.yml
+
+docker run --rm -v ./db:/workspace \
+ -e MSSQL_INSTANCE=mir-sdb-002 \
+ -e MSSQL_DBNAME=BOT \
+ -e MSSQL_USER=liquibase \
+ -e MSSQL_PASSWORD=liquibase\
+  sinopia.dev.lan:5000/liquibase-migrates:1.0.0

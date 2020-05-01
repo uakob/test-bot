@@ -1,0 +1,9 @@
+databaseChangeLog:
+
+  - include:
+      relativeToChangelogFile: true
+      file: 201908211000-create-schema-bot.sql
+
+  - include:
+      relativeToChangelogFile: true
+      file: 201908211010-create-table-bot-trees.sql

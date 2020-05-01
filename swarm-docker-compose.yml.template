@@ -1,0 +1,29 @@
+version: "3.4"
+services:
+  bot:
+    hostname: bot
+    image: some.dev.lan:5000/bot:{{ bot_app_tag }}
+    ports:
+      - "{{ AUTOBOT_PORT }}:{{ AUTOBOT_INNER_PORT }}"
+    env_file:
+      - .env
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: udp://{{ graylog_host2 }}:17777
+    dns:
+      - {{ NAMESERVER_0 }}
+      - {{ NAMESERVER_1 }}
+    networks:
+      - goods-general-001
+networks:
+  goods-general-001:
+    external: true

@@ -1,0 +1,7 @@
+{
+  "extends": "tslint-config-airbnb",
+  "rules": {
+    "increment-decrement": [true, "allow-post"],
+    "no-increment-decrement": false
+  }
+}

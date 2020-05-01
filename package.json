@@ -1,0 +1,83 @@
+{
+  "name": "goods-cc-autobot",
+  "version": "0.0.1",
+  "description": "virtual operator",
+  "main": "app/bootstrap.js",
+  "scripts": {
+    "debug": "nodemon",
+    "start": "node app/bootstrap.js",
+    "build": "tsc -p tsconfig.json",
+    "test": "./node_modules/mocha/bin/mocha",
+    "lint": "./node_modules/tslint/bin/tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@bitbucket.goods.ru:7999/cc/cc-autobot.git"
+  },
+  "keywords": [
+    "bot",
+    "autobot",
+    "virtual-operator",
+    "contact-center"
+  ],
+  "engines": {
+    "node": "12.1.0"
+  },
+  "private": true,
+  "author": "timofej.sidorov@goods.ru",
+  "dependencies": {
+    "@nestjs/common": "6.3.0",
+    "@nestjs/core": "6.1.1",
+    "@nestjs/platform-fastify": "6.1.1",
+    "@nestjs/swagger": "3.0.2",
+    "@nestjs/mongoose": "6.1.2",
+    "mongoose": "5.6.9",
+    "axios": "0.19.0",
+    "class-transformer": "0.2.3",
+    "class-validator": "0.9.1",
+    "config": "3.1.0",
+    "dotenv": "8.0.0",
+    "jaeger-client": "3.15.0",
+    "joi": "14.3.1",
+    "lodash": "4.17.11",
+    "lowdb": "1.0.0",
+    "moment": "2.24.0",
+    "mssql": "5.1.0",
+    "mongodb": "3.3.0-beta2",
+    "opentracing": "0.14.3",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "6.5.1",
+    "uuid": "3.3.2",
+    "winston": "3.2.1",
+    "ioredis": "4.14.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "6.1.1",
+    "@types/node": "12.7.2",
+    "@types/lodash": "4.14.124",
+    "@types/uuid": "3.4.4",
+    "@types/joi": "14.3.3",
+    "@types/config": "0.0.34",
+    "@types/ioredis": "4.0.13",
+    "@types/jaeger-client": "git+https://github.com/julianste/jaeger-types.git",
+    "@types/winston": "2.4.4",
+    "@types/mongodb": "3.1.31",
+    "@types/mongoose": "5.5.12",
+    "@types/lowdb": "1.0.9",
+    "@types/mssql": "4.0.16",
+    "nodemon": "1.19.0",
+    "chai": "4.2.0",
+    "dotenv": "8.0.0",
+    "husky": "2.2.0",
+    "mocha": "6.1.4",
+    "sinon": "7.3.2",
+    "tslint": "5.16.0",
+    "tslint-config-airbnb": "5.11.1",
+    "ts-node": "8.1.0",
+    "tsconfig-paths": "3.8.0",
+    "typescript": "3.4.5"
+  },
+  "publishConfig": {
+    "registry": "http://npm-registry.prod.lan"
+  }
+}

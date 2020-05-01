@@ -1,0 +1,96 @@
+version: '3'
+
+services:
+  app:
+    container_name: 'app'
+    build: .
+    depends_on:
+      # - mongodb
+      - redis
+      - db
+      - jsonserver
+    env_file:
+      - .local.env
+    ports:
+      - "${BOT_PORT}:${BOT_PORT}"
+      - 9229:9229
+    volumes:
+      - .:/server/
+    command:
+      - sh
+      - -c
+      - |
+        npm install
+        npm run build
+        npm run debug
+    networks:
+      - autobot
+
+  redis:
+    container_name: "${BOT_REDIS_HOST}"
+    image: redis:latest
+    env_file:
+      - .local.env
+    ports:
+      - "${BOT_REDIS_PORT}:${BOT_REDIS_PORT}"
+    restart: on-failure
+    networks:
+      - autobot
+
+  # mongodb:
+  #   container_name: 'mongodb'
+  #   image: mongo:latest
+  #   # env_file:
+  #   #   - .local.env
+  #   volumes:
+  #     - ./data/mongo:/data/db
+  #   ports:
+  #     - "${MONGO_PORT}:${MONGO_PORT}"
+  #   restart: on-failure
+  #   networks:
+  #     - autobot
+
+  jaeger:
+    container_name: 'jaeger'
+    image: jaegertracing/all-in-one:1.6
+    env_file:
+      - .local.env
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:8775
+      - 16686:16686
+      - 14268:14268
+      - 9411:9411
+    restart: on-failure
+    networks:
+      - autobot
+
+  jsonserver:
+    container_name: jsonserver
+    image: "clue/json-server:latest"
+    ports:
+      - 3000:80
+    env_file:
+      - .local.env
+    volumes:
+      - ./data/mock:/data/
+    command: -w db.json
+    networks:
+      - autobot
+
+  db:
+    container_name: db
+    image: "mcr.microsoft.com/mssql/server"
+    env_file:
+      - .db.env
+    ports:
+      - 1433:1433
+    # volumes:
+    #   - ./data/db:/var/opt/mssql/data
+    networks:
+      - autobot
+
+networks:
+  autobot:

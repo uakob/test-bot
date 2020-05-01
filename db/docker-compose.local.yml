@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  bot-migrates:
+    image: some.dev.lan:5000/liquibase-migrates:1.0.0
+    env_file: ../.local.env
+    environment:
+      - MSSQL_USER=liquibase
+      - MSSQL_PASSWORD=liquibase
+    volumes:
+      - ./:/workspace

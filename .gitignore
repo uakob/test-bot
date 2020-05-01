@@ -1,0 +1,23 @@
+#ignore thumbnails created by OS
+Thumbs.db
+.DS_Store
+
+# Dependency directories
+node_modules
+
+.nyc_output
+.npmrc
+
+# editor files
+idea/
+.workspace/
+.vscode/
+.favorites.json
+
+# ENV
+.env
+
+# build
+./app
+data/mongo
+data/db

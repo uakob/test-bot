@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  bot-migrates:
+    image: sinopia.dev.lan:5000/liquibase-migrates:1.0.0
+    env_file: ../.env
+    environment:
+      - MSSQL_USER=liquibase
+      - MSSQL_PASSWORD=liquibase
+    volumes:
+      - ./:/workspace
